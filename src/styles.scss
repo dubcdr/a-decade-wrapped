@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+$color-primary-0: #AA3939;	// Main Primary color */
+$color-primary-1: #FFAAAA;
+$color-primary-2: #D46A6A;
+$color-primary-3: #801515;
+$color-primary-4: #550000;
+
+$color-secondary-1-0: #226666;	// Main Secondary color (1) */
+$color-secondary-1-1: #669999;
+$color-secondary-1-2: #407F7F;
+$color-secondary-1-3: #0D4D4D;
+$color-secondary-1-4: #003333;
+
+$color-secondary-2-0: #7B9F35;	// Main Secondary color (2) */
+$color-secondary-2-1: #D4EE9F;
+$color-secondary-2-2: #A5C663;
+$color-secondary-2-3: #567714;
+$color-secondary-2-4: #354F00;
+
+[class$="soundsOfDecade"] {
+  background-color: $color-primary-0;
+}
+[class$="deepCuts"] {
+  background-color: $color-secondary-1-0;
+}
+[class$="edten"] {
+  background-color: $color-secondary-2-0;
+}
+
+body {
+  transition: background-color 2s ease;
+}
