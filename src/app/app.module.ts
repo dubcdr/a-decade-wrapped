@@ -1,6 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFullpageModule } from '@fullpage/angular-fullpage';
 
@@ -29,6 +31,10 @@ const routes: Route[] = [
   },
 ];
 
+const materialModules = [
+  MatListModule,
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +45,9 @@ const routes: Route[] = [
     BrowserModule,
     HttpClientModule,
     AngularFullpageModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ...materialModules
   ],
   providers: [
     LoginResolver,

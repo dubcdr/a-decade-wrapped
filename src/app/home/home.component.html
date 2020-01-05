@@ -16,6 +16,16 @@
   </div>
   <div class="section">
     <h1>Deep Cuts</h1>
+    <ng-container *ngIf="playlistItems; else elseTemplate">
+      <ng-container *ngFor="let item of playlistItems">
+        {{item | json}}
+      </ng-container>
+    </ng-container>
+    <ng-template #elseTemplate>
+      loading...
+    </ng-template>
+
+
   </div>
   <div class="section">
     <h1>ED10</h1>

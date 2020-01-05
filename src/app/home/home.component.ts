@@ -18,11 +18,12 @@ export class HomeComponent implements OnInit {
       console.log('After resize');
     },
     afterLoad: (origin, dest, dir) => {
-      console.log(origin.index);
+      this.handleLoad(dest);
     }
   };
   title = 'decadeWrapped';
   fullpage_api: any;
+  playlistItems: object[];
 
   constructor(private spotify: SpotifyService, private auth: AuthService) { }
 
@@ -36,5 +37,12 @@ export class HomeComponent implements OnInit {
 
   getRef(fullPageRef: FullpageDirective) {
     this.fullpage_api = fullPageRef;
+  }
+
+  handleLoad(dest) {
+    this.spotify.getPlaylist('4BzmTSG6ThJzH5mbwKO69u').subscribe(resp => {
+      console.log(resp);
+      this.playlistItems = resp;
+    });
   }
 }

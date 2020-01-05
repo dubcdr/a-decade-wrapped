@@ -15,6 +15,7 @@ export class LoginResolver implements Resolve<void> {
     const resp = parse(route.fragment);
     const token = resp.access_token as string;
     this.auth.handleToken(token);
+    console.log(token);
     return this.router.navigate(['home']);
   }
 }
