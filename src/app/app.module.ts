@@ -1,28 +1,35 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MatListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Route, RouterModule } from '@angular/router';
-import { AngularFullpageModule } from '@fullpage/angular-fullpage';
 
 import { AppComponent } from './app.component';
+import { initApp } from './app.init';
+import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { LoginResolver } from './login/login.resolver';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { PlaylistResolver } from './playlist/playlist.resolver';
 import { SpotifyInterceptor } from './spotify.interceptor';
 
 const routes: Route[] = [
   {
-    component: LoginComponent,
     path: 'login',
-    resolve: {
-      token: LoginResolver
-    }
+    redirectTo: '',
+    pathMatch: 'full'
   },
   {
     component: HomeComponent,
     path: 'home'
+  },
+  {
+    component: PlaylistComponent,
+    path: 'playlist/:id',
+    resolve: {
+      playlist: PlaylistResolver
+    }
   },
   {
     path: '',
@@ -40,18 +47,19 @@ const materialModules = [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    PlaylistComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AngularFullpageModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ...materialModules
   ],
   providers: [
-    LoginResolver,
-    { provide: HTTP_INTERCEPTORS, useClass: SpotifyInterceptor, multi: true }
+    PlaylistResolver,
+    { provide: APP_INITIALIZER, useFactory: initApp, deps: [AuthService], multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpotifyInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

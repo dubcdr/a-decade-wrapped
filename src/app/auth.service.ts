@@ -26,12 +26,13 @@ export class AuthService {
 
     ];
     const scopesString = encodeURIComponent(scopes.join(' '));
-    const redirectUri = encodeURIComponent('http://localhost:4200/login');
+    const redirectUri = encodeURIComponent('http://localhost:4200');
     const url = `${this.spotifyUrl}?response_type=token&client_id=${this.clientId}&scope=${scopesString}&redirect_uri=${redirectUri}`;
     window.location.href = url;
   }
 
   handleToken(token: string) {
     this._token = token;
+    this.spotify.loadPlaylists();
   }
 }

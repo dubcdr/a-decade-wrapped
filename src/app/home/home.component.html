@@ -1,33 +1,6 @@
-<div id="fullpage"
-     fullpage
-     [options]="config"
-     (ref)="getRef($event)">
-  <div class="section">
-    Hello there
-  </div>
-  <div class="section">
-    <h1>Sounds of the Decade</h1>
-    <iframe src="https://open.spotify.com/embed/playlist/1mAKNVB2TgzPiKWJRdbEdq"
-            width="300"
-            height="380"
-            frameborder="0"
-            allowtransparency="true"
-            allow="encrypted-media"></iframe>
-  </div>
-  <div class="section">
-    <h1>Deep Cuts</h1>
-    <ng-container *ngIf="playlistItems; else elseTemplate">
-      <ng-container *ngFor="let item of playlistItems">
-        {{item | json}}
-      </ng-container>
-    </ng-container>
-    <ng-template #elseTemplate>
-      loading...
-    </ng-template>
-
-
-  </div>
-  <div class="section">
-    <h1>ED10</h1>
-  </div>
-</div>
+<ng-container *ngFor="let playlist of playlists$ | async">
+  <img [src]="playlist?.images[0]?.url"
+       alt="">
+  <h1><a [routerLink]="['/playlist', playlist.id]">{{playlist.name}}</a></h1>
+  <h2>{{playlist.description}}</h2>
+</ng-container>
