@@ -1,9 +1,19 @@
 <h1>{{playlist.name}}</h1>
-<h2>{{playlist.description}}</h2>
-
-<mat-list>
-  <mat-list-item *ngFor="let track of playlist.tracks.items">
-    <h4 mat-line>{{track.track.name}}</h4>
-    <p mat-line> {{track.track.artists[0].display_name || track.track.artists[0].name}} </p>
-  </mat-list-item>
-</mat-list>
+<h2>{{playlist.description}} {{playlist.tracks.items.length}}/{{playlist.tracks.total}}</h2>
+<cdk-virtual-scroll-viewport class="track-container"
+                             [itemSize]="5">
+  <div *cdkVirtualFor="let track of playlist.tracks.items; trackBy: trackByFn"
+       class="track">
+    <img [src]="track.track.album.images[0].url">
+    <h4>{{track.track.name}} - {{track.track.artists[0].display_name || track.track.artists[0].name}}</h4>
+    <div class="actions"
+         fxLayout="row"
+         fxLayoutAlign="end center"
+         fxLayoutGap="5px">
+      <button mat-icon-button
+              (click)="playTrack(track.track)">
+        <mat-icon>play_circle_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

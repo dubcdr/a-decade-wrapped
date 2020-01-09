@@ -1,6 +1,9 @@
-<ng-container *ngFor="let playlist of playlists$ | async">
+<div *ngFor="let playlist of playlists$ | async"
+     class="playlist">
   <img [src]="playlist?.images[0]?.url"
        alt="">
-  <h1><a [routerLink]="['/playlist', playlist.id]">{{playlist.name}}</a></h1>
-  <h2>{{playlist.description}}</h2>
-</ng-container>
+  <div class="details">
+    <h1><a [routerLink]="['/playlist', playlist.id]">{{playlist.name}}</a></h1>
+    <h2>{{playlist.description}}</h2>
+  </div>
+</div>

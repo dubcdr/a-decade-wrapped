@@ -1,0 +1,7 @@
+<ng-container *ngIf="(currentlyPlaying$ | async) as currentlyPlaying ; else elseTemplate">
+  <span>{{currentlyPlaying.item.name}} - {{currentlyPlaying.item.artists[0].name}}</span>
+  <!-- {{currentlyPlaying | json}} -->
+</ng-container>
+<ng-template #elseTemplate>
+  You're not currently playing anything...
+</ng-template>

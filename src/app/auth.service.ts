@@ -22,8 +22,8 @@ export class AuthService {
       'user-read-private',
       'user-read-currently-playing',
       'user-top-read',
-      'user-read-recently-played'
-
+      'user-read-recently-played',
+      'user-modify-playback-state'
     ];
     const scopesString = encodeURIComponent(scopes.join(' '));
     const redirectUri = encodeURIComponent('http://localhost:4200');

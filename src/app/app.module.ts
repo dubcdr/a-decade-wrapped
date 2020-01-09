@@ -1,6 +1,7 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { MatListModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Route, RouterModule } from '@angular/router';
@@ -10,9 +11,11 @@ import { initApp } from './app.init';
 import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PlayerComponent } from './player/player.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { PlaylistResolver } from './playlist/playlist.resolver';
 import { SpotifyInterceptor } from './spotify.interceptor';
+
 
 const routes: Route[] = [
   {
@@ -40,6 +43,12 @@ const routes: Route[] = [
 
 const materialModules = [
   MatListModule,
+  MatIconModule,
+  MatButtonModule,
+];
+
+const cdkModules = [
+  ScrollingModule
 ];
 
 @NgModule({
@@ -48,13 +57,15 @@ const materialModules = [
     HomeComponent,
     LoginComponent,
     PlaylistComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    ...materialModules
+    ...materialModules,
+    ...cdkModules
   ],
   providers: [
     PlaylistResolver,

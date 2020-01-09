@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  $img-height: 150px;
+  .track-container {
+    height: 5*$img-height;
+  }
+
+  .track {
+    height: $img-height;
+    display: grid;
+    grid-template-columns: $img-height 1fr 1fr;
+    grid-template-rows: auto;
+    img {
+      height: $img-height;
+      width: $img-height;
+    }
+    img:hover {
+      animation: scale 500ms ease-in-out forwards;
+    }
+    @keyframes scale {
+      to {
+        transform: scale(1.5);
+      }
+    }
+  }
+}

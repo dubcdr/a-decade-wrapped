@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
+  .playlist {
+    $img-height: 15em;
+    display: grid;
+    grid-template-columns: $img-height 1fr;
+    grid-template-rows: auto;
+    img {
+      height: 15em;
+      width: 15em;
+    }
+  }
+}

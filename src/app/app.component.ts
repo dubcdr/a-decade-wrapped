@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
 
   constructor(private spotify: SpotifyService, private auth: AuthService) { }
   ngOnInit(): void {
-    this.spotify.loadPlaylists();
+    // this.spotify.loadPlaylists();
   }
 }
