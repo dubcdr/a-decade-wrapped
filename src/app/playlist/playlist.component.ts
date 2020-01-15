@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as ColorThief from 'color-thief';
 
 import * as Spotify from '../models/playlist.spotify.model';
 import { SpotifyService } from '../spotify.service';
@@ -9,13 +10,22 @@ import { SpotifyService } from '../spotify.service';
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.scss']
 })
-export class PlaylistComponent implements OnInit {
+export class PlaylistComponent implements OnInit, AfterViewInit {
   playlist: Spotify.Playlist;
+  thief: ColorThief;
 
-  constructor(private route: ActivatedRoute, private spotify: SpotifyService) { }
+  constructor(private route: ActivatedRoute, private spotify: SpotifyService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.playlist = this.route.snapshot.data['playlist'];
+    this.thief = new ColorThief();
+  }
+
+  ngAfterViewInit() {
+    document.querySelectorAll('img.track-img').forEach(img => {
+      const result = this.thief.getColor(img);
+      console.log('result', result);
+    })
   }
 
   playTrack(track: Spotify.Track) {

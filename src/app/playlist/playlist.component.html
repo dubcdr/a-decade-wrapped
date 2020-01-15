@@ -4,7 +4,8 @@
                              [itemSize]="5">
   <div *cdkVirtualFor="let track of playlist.tracks.items; trackBy: trackByFn"
        class="track">
-    <img [src]="track.track.album.images[0].url">
+    <img [src]="track.track.album.images[0].url"
+         [ngClass]="[track.track.id, 'track-img']">
     <h4>{{track.track.name}} - {{track.track.artists[0].display_name || track.track.artists[0].name}}</h4>
     <div class="actions"
          fxLayout="row"
